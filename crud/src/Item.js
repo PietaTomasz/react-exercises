@@ -14,6 +14,9 @@ class Item extends Component {
     onEdit = () => {
         this.setState({ isEdit: true  })
     }
+    onEditSubmit = (event) => {
+        event.preventDefault();
+    }
     render() {
     const { name, description, organizer, location, date, img } = this.props;
     return (
@@ -21,7 +24,7 @@ class Item extends Component {
         {
             this.state.isEdit ?
             (
-                <div>
+                <form onSubmit={this.onEditSubmit}>
                 <input placeholder="name"
              ref={nameInput => this.nameInput = nameInput} />
             <input placeholder="description"
@@ -37,8 +40,8 @@ class Item extends Component {
             ref={dateInput => this.dateInput = dateInput} />
             <input placeholder="img"
             ref={imgInput => this.imgInput = imgInput} /><hr/>
-            <button> Add</button>
-                </div>
+            <button> Save</button>
+                </form>
             )
             : (<div>
           <p>{name}</p>

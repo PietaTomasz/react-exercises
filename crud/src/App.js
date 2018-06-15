@@ -55,6 +55,9 @@ class App extends Component {
       events: filtered
     });
   }
+  onEditSubmit = (name, description, organizer, location, date, img) => {
+
+  }
   render() {
     return (
       <div>
@@ -67,6 +70,8 @@ class App extends Component {
           <Item
           key={event.name} 
           {...event}
+          onDelete={this.onDelete}
+          onEditSubmit={this.onEditSubmit}
           // name={event.name}
           // description={event.description}
           // organizer={event.organizer}
