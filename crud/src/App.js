@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Item from './Item';
 
 const events = [
   {
@@ -8,6 +9,14 @@ const events = [
     organizer: 'SkyGate',
     location: 'Gliwice',
     date: '18.05.2018',
+    img: 'http://wojtekpieta.pl/patrol/patrol/logo.png'
+  },
+  {
+    name: 'React Workshops',
+    description: 'Free Workshops for FrontEnd Developers',
+    organizer: 'SkyGate',
+    location: 'Gliwice',
+    date: '13.06.2018',
     img: 'http://wojtekpieta.pl/patrol/patrol/logo.png'
   }
 ];
@@ -23,42 +32,35 @@ class App extends Component {
     }
   }
   componentWillMount() {
-    const events = JSON.parse(localStorage.getItem('events'));
+    const events = this.addEvent();
     this.setState({ events });
   }
   
-  addEvent = (ev) => {
-    ev.preventDefault();
-    let name = this.refs.name.value;
-    let completed = this.refs.completed.value;
-    let event = { name, completed };
-    let events = this.state.events;
-    events.push(event);
-    this.setState({ events: event });
-    this.refs.eventForm.reset();
+  addEvent = () => {
+    return JSON.parse(localStorage.getItem('events'));
+    this.setState({ events });
+  }
+  onDelete = () => {
+    // this.setState({
+    //   events: 
+    // });
   }
   render() {
-    let title = this.state.title;
     return (
       <div>
-      <h1>{title}</h1>
-      <form ref="eventForm">
-        <input type="text" ref="name" placeholder="add event" />
-        <input type="text" ref="completed" placeholder="is it done?" />
-        <button onClick={this.addEvent}>Add Event</button>
-      </form>
-      <p>Event name: {this.state.events[0].name}</p>
-      <h2>Events Manager</h2>
+      <h1>Events Manager</h1>
       { this.state.events.map( event => {
         return (
-          <div className="eventBox" key={event.name}>
-            <p>{event.name}</p>
-            <p>{event.description}</p>
-            <p>{event.organizer}</p>
-            <p>{event.location}</p>
-            <p>{event.date}</p>
-            <p>{event.img}</p>
-          </div>
+          <Item
+          key={event.name} 
+          {...event}
+          // name={event.name}
+          // description={event.description}
+          // organizer={event.organizer}
+          // location={event.location}
+          // date={event.date}
+          // img={event.img}
+          />
         )
       } ) }
       </div>

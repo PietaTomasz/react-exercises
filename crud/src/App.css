@@ -1,6 +1,13 @@
+body {
+  background-color: green;
+  margin: 0 auto;
+  
+}
+
 .eventBox {
   background-color: yellow;
   border: 2px solid black;
+  width: 80vw;
   margin: 0;
   padding: 20px;
   text-align: center;
