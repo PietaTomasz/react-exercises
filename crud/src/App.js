@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Item from './Item';
+import AddEvent from './AddEvent';
 
 const events = [
   {
@@ -27,7 +28,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
+      events: JSON.parse(localStorage.getItem('events')),
       title: 'React Event Organizer'
     }
   }
@@ -37,7 +38,12 @@ class App extends Component {
   }
   
   addEvent = () => {
-    return JSON.parse(localStorage.getItem('events'));    
+    return this.state.events;
+  }
+  onAdd = (name, description, organizer, location, date, img) => {
+    const events = this.addEvent();
+    events.push({ name, description, organizer, location, date, img });
+    this.setState({ events });
   }
   onDelete = (name) => {
     const events = this.addEvent();
@@ -53,6 +59,9 @@ class App extends Component {
     return (
       <div>
       <h1>Events Manager</h1>
+      <AddEvent
+      onAdd={this.onAdd}
+      />
       { this.state.events.map( event => {
         return (
           <Item
