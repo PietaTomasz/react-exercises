@@ -8,7 +8,7 @@ class Item extends Component {
         }
     }
     onDelete = () => {
-        const { onDelete, name } = this.props;
+        let { onDelete, name } = this.props;
         onDelete(name);
     }
     onEdit = () => {
@@ -16,29 +16,38 @@ class Item extends Component {
     }
     onEditSubmit = (event) => {
         event.preventDefault();
+        this.props.onEditSubmit(
+            this.nameInput.value,
+            this.descriptionInput.value,
+            this.organizerInput.value,
+            this.locationInput.value,
+            this.dateInput.value,
+            this.imgInput.value,
+        );
+        this.setState({ isEdit: false })
     }
     render() {
-    const { name, description, organizer, location, date, img } = this.props;
+    let { name, description, organizer, location, date, img } = this.props;
     return (
         <div className="eventBox">
         {
             this.state.isEdit ?
             (
-                <form onSubmit={this.onEditSubmit}>
-                <input placeholder="name"
-             ref={nameInput => this.nameInput = nameInput} />
+            <form onSubmit={this.onEditSubmit}>
+            <input placeholder="name" defaultValue={name}
+            ref={nameInput => this.nameInput = nameInput} />
             <input placeholder="description"
             ref={descriptionInput => this.descriptionInput =
-            descriptionInput} />
+            descriptionInput} defaultValue={description} />
             <input placeholder="organizer"
             ref={organizerInput => this.organizerInput = 
-            organizerInput} />
+            organizerInput} defaultValue={organizer} />
             <input placeholder="location"
             ref={locationInput => this.locationInput = 
-            locationInput} />
-            <input placeholder="date"
+            locationInput} defaultValue={location} />
+            <input placeholder="date" defaultValue={date}
             ref={dateInput => this.dateInput = dateInput} />
-            <input placeholder="img"
+            <input placeholder="img" defaultValue={img}
             ref={imgInput => this.imgInput = imgInput} /><hr/>
             <button> Save</button>
                 </form>

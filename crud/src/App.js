@@ -3,7 +3,7 @@ import './App.css';
 import Item from './Item';
 import AddEvent from './AddEvent';
 
-const events = [
+let events = [
   {
     name: 'CSS/JS Workshops',
     description: 'Free Workshops for FrontEnd Developers',
@@ -33,7 +33,7 @@ class App extends Component {
     }
   }
   componentWillMount() {
-    const events = this.addEvent();
+    let events = this.addEvent();
     this.setState({ events });
   }
   
@@ -41,13 +41,13 @@ class App extends Component {
     return this.state.events;
   }
   onAdd = (name, description, organizer, location, date, img) => {
-    const events = this.addEvent();
+    let events = this.addEvent();
     events.push({ name, description, organizer, location, date, img });
     this.setState({ events });
   }
   onDelete = (name) => {
-    const events = this.addEvent();
-    const filtered = events.filter( event => {
+    let events = this.addEvent();
+    let filtered = events.filter( event => {
       return event.name !== name;
     } )
     console.log(filtered);
@@ -56,7 +56,18 @@ class App extends Component {
     });
   }
   onEditSubmit = (name, description, organizer, location, date, img) => {
-
+    let events = this.addEvent();
+    events = events.map( event => {
+      if (event.name === name) {
+        event.name = name;
+        event.description = description;
+        event.organizer = organizer;
+        event.location = location;
+        event.date = date;
+        event.img = img;
+      } return event;
+    } );
+    this.setState({ events })
   }
   render() {
     return (
