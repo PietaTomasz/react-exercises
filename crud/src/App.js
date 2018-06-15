@@ -37,13 +37,17 @@ class App extends Component {
   }
   
   addEvent = () => {
-    return JSON.parse(localStorage.getItem('events'));
-    this.setState({ events });
+    return JSON.parse(localStorage.getItem('events'));    
   }
-  onDelete = () => {
-    // this.setState({
-    //   events: 
-    // });
+  onDelete = (name) => {
+    const events = this.addEvent();
+    const filtered = events.filter( event => {
+      return event.name !== name;
+    } )
+    console.log(filtered);
+    this.setState({
+      events: filtered
+    });
   }
   render() {
     return (

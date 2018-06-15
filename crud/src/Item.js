@@ -6,7 +6,7 @@ class Item extends Component {
         onDelete(name);
     }
     render() {
-    const { name, description, organizer, location, date, img, onDelete } = this.props;
+    const { name, description, organizer, location, date, img } = this.props;
     return (
         <div className="eventBox" key={name}>
           <p>{name}</p>
@@ -15,7 +15,7 @@ class Item extends Component {
           <p>{location}</p>
           <p>{date}</p>
           <p><img src="{img}" alt="imgage"></img></p>
-          <button onClick={onDelete}>Delete</button>
+          <button onClick={this.onDelete}>Delete</button>
         </div>
       )
   }
