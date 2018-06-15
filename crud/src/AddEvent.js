@@ -3,7 +3,14 @@ import React, { Component } from 'react';
 class AddEvent extends Component {
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onAdd(this.nameInput.value, this.descriptionInput.value, this.organizerInput.value, this.locationInput.value, this.dateInput.value, this.imgInput.value);
+        this.props.onAdd(
+            this.nameInput.value, this.descriptionInput.value, this.organizerInput.value, this.locationInput.value,
+            this.dateInput.value,
+            this.imgInput.value);
+
+        this.nameInput.value = ''; this.descriptionInput.value = ''; this.organizerInput.value = ''; this.locationInput.value = '';
+        this.dateInput.value = '';
+        this.imgInput.value = '';
     }
     render() {    
     return (
