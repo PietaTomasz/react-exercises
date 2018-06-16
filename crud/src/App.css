@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 20px;
   text-align: center;
+  border-radius: 4px;
 }
 .eventBox:hover {
   background-color: yellowgreen;
@@ -19,4 +20,7 @@ body {
   transform: translate(5px, 5px) scale(1.01);
   transition: all 0.5s ease;
 	box-shadow: 0px 0px 25px 0px #4b0175;
+}
+button{
+  cursor: pointer;
 }

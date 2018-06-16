@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from "semantic-ui-react";
 
 class Item extends Component {
     constructor(props) {
@@ -49,7 +50,10 @@ class Item extends Component {
             ref={dateInput => this.dateInput = dateInput} />
             <input placeholder="img" defaultValue={img}
             ref={imgInput => this.imgInput = imgInput} /><hr/>
-            <button> Save</button>
+            <Button
+            animated="fade"
+            basic
+            color="teal"> Save</Button>
                 </form>
             )
             : (<div>

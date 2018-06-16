@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from "semantic-ui-react";
 
 class AddEvent extends Component {
     onSubmit = (event) => {
@@ -31,7 +32,7 @@ class AddEvent extends Component {
             ref={dateInput => this.dateInput = dateInput} />
             <input placeholder="img"
             ref={imgInput => this.imgInput = imgInput} /><hr/>
-            <button> Add</button>
+            <Button> Add</Button>
         </form>
     )
   }
